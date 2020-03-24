@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @items = Item.all
+    @items = Item.search(params[:search])
     # @cotegories = Item.categories
   end
 
@@ -28,6 +28,10 @@ before_action :authenticate_user!, except: [:index, :show]
     item = Item.find(params[:id])
     item.destroy
     redirect_to items_path
+  end
+
+	def search
+    @items = Item.search(params[:search])
   end
 
   private
