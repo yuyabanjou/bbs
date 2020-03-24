@@ -7,4 +7,12 @@ class Item < ApplicationRecord
 
 	acts_as_taggable
 
+	def self.search(search)
+    if search
+      where(['title LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
+
 end
