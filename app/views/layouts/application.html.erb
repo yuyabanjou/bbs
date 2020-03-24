@@ -10,6 +10,38 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <%= link_to "BBS", items_path, class: "nav-link" %>
+      </a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="Navber">
+        <% if user_signed_in? %>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <%= link_to "スレッドを立てる", new_user_item_path(current_user), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            </li>
+          </ul>
+        <% else %>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <%= link_to "スレッドを立てる", new_user_session_path, class: "nav-link" %>
+            </li>
+          </ul>
+        <% end %>
+        <form class="form-inline my-2 my-lg-0">
+          <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
+          <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </nav>
+
     <%= yield %>
   </body>
 </html>

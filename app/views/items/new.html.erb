@@ -1,0 +1,17 @@
+
+<h2><strong>スレッド投稿</strong></h2>
+
+<%= form_for([@user, @item]) do |f| %>
+
+	<h4>タイトル</h4>
+	<%= f.text_field :title, class: "form-control" %>
+
+	<h4>概要</h4>
+	<%= f.text_area :text, class: "form-control" %>
+
+	<%= f.label :tag_list, 'カテゴリをカンマ区切りで入力' %>
+	<%= text_field_tag 'item[tag_list]', @item.tag_list, :class => "form-control" %>
+
+	<%= f.submit '登録', class: "btn btn-primary" %>
+
+<% end %>
