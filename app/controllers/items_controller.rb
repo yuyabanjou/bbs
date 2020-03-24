@@ -9,6 +9,7 @@ before_action :authenticate_user!, except: [:index, :show]
 
   def show
     @item = Item.find(params[:id])
+    @comment = Comment.new
   end
 
   def new
